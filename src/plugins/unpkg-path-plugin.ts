@@ -1,5 +1,6 @@
 import * as esbuild from "esbuild-wasm";
 import axios from "axios";
+import { kMaxLength } from "buffer";
 export const unpkgPathPlugin = () => {
   return {
     //for debugging purposes
@@ -13,11 +14,16 @@ export const unpkgPathPlugin = () => {
         if (args.path == "index.js") {
           return { path: args.path, namespace: "a" };
         }
+
+        //It handles the resolutoin of relative files
         //check if there were relative paths  and modify the URL to make it a valid URL
         if (args.path.includes("./") || args.path.includes("../")) {
           return {
             namespace: "a",
-            path: new URL(args.path, args.importer + "/").href,
+            path: new URL(
+              args.path,
+              "https://unpkg.com" + args.resolveDir + "/"
+            ).href,
           };
         }
         return {
@@ -33,15 +39,16 @@ export const unpkgPathPlugin = () => {
           return {
             loader: "jsx",
             contents: `
-              const message = require('medium-test-pkg');
+              const message = require('nested-test-pkg');
               console.log(message);
             `,
           };
         }
-        const { data } = await axios.get(args.path);
+        const { data, request } = await axios.get(args.path);
         return {
           loader: "jsx",
           contents: data,
+          resolveDir: new URL("./", request.responseURL).pathname,
         };
       });
     },
