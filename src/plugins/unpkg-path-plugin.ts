@@ -7,7 +7,7 @@ const fileCache = localForage.createInstance({
   name: "filecache",
 });
 
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (inputCode: string) => {
   return {
     //for debugging purposes
     name: "unpkg-path-plugin",
@@ -40,14 +40,11 @@ export const unpkgPathPlugin = () => {
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
         console.log("onLoad", args);
-
+        //this will avoiding esbundle trying to access file system
         if (args.path === "index.js") {
           return {
             loader: "jsx",
-            contents: `
-              import React from 'react-select';
-\              console.log(react,useState);
-            `,
+            contents: inputCode,
           };
         }
 
