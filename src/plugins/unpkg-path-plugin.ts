@@ -1,6 +1,12 @@
 import * as esbuild from "esbuild-wasm";
 import axios from "axios";
-import { kMaxLength } from "buffer";
+import localForage from "localforage";
+
+//CACHE
+const fileCache = localForage.createInstance({
+  name: "filecache",
+});
+
 export const unpkgPathPlugin = () => {
   return {
     //for debugging purposes
@@ -39,18 +45,30 @@ export const unpkgPathPlugin = () => {
           return {
             loader: "jsx",
             contents: `
-              import React from 'react';
-              const reactDom = require('react-dom');
-              console.log(react,reactDOM);
+              import React from 'react-select';
+\              console.log(react,useState);
             `,
           };
         }
+
+        //Check to see if we have already fetched this file and it is in the cash
+        const cachedResult = await fileCache.getItem(args.path);
+        //if it is in cash then return immediatly
+        if (cachedResult) {
+          return cachedResult;
+        }
+
         const { data, request } = await axios.get(args.path);
-        return {
+        //store response in cache
+
+        const result = {
           loader: "jsx",
           contents: data,
           resolveDir: new URL("./", request.responseURL).pathname,
         };
+        //Store response in cache
+        await fileCache.setItem(args.path, result);
+        return result;
       });
     },
   };
