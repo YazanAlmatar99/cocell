@@ -20,6 +20,7 @@ const App = () => {
   }, []);
   const onClick = async () => {
     if (!ref.current) return;
+
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -30,7 +31,7 @@ const App = () => {
         global: "window",
       },
     });
-    // console.log(results);
+
     setCode(result.outputFiles[0].text);
   };
   return (
