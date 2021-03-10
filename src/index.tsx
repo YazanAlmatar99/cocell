@@ -21,6 +21,8 @@ const App = () => {
   }, []);
   const onClick = async () => {
     if (!ref.current) return;
+    //to reset the iframe every time before execution
+    iframe.current.srcdoc = html;
 
     const result = await ref.current.build({
       entryPoints: ["index.js"],
@@ -33,7 +35,6 @@ const App = () => {
       },
     });
 
-    //setCode(result.outputFiles[0].text);
     iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
   };
   const html = `
