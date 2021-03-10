@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild-wasm";
-import { useState, useEffect, useRef, useReducer } from "react";
+import { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
@@ -8,7 +8,6 @@ const App = () => {
   const ref = useRef<any>();
   const iframe = useRef<any>();
   const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
 
   const startService = async () => {
     ref.current = await esbuild.startService({
@@ -66,8 +65,12 @@ const App = () => {
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
-      <iframe ref={iframe} srcDoc={html} sandbox="allow-scripts" />
+      <iframe
+        title="Code Preview"
+        ref={iframe}
+        srcDoc={html}
+        sandbox="allow-scripts"
+      />
     </div>
   );
 };
