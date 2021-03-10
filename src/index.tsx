@@ -33,8 +33,23 @@ const App = () => {
       },
     });
 
-    setCode(result.outputFiles[0].text);
+    //setCode(result.outputFiles[0].text);
+    iframe.current.contentWindow.postMessage(result.outputFiles[0].text, "*");
   };
+  const html = `
+    <html>
+      <head>
+        <body>
+          <div id="root"></div>
+          <script>
+            window.addEventListener('message', (event)=> {
+              eval(event.data)
+            },false)
+          </script>
+        </body>
+     </head>
+    </html>
+  `;
   return (
     <div>
       <textarea
