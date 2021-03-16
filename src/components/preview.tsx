@@ -2,6 +2,7 @@ import "./preview.css";
 import { useEffect, useRef } from "react";
 interface PreviewProps {
   code: string;
+  err: string;
 }
 
 const html = `
@@ -12,13 +13,20 @@ const html = `
         <body>
           <div id="root"></div>
           <script>
+          const handleError = (err) => {
+            const root = document.querySelector('#root');
+            root.innerHTML = "<div style='color:red;'><h4>Runtime Error</h4>" + err + "</div>"
+            throw err;
+          }
+          window.addEventListener('error', (event)=> {
+            event.preventDefault()
+            handleError(event.error)
+          })
             window.addEventListener('message', (event)=> {
               try{
                 eval(event.data)
               } catch (err) {
-                const root = document.querySelector('#root');
-                root.innerHTML = "<div style='color:red;'><h4>Runtime Error</h4>" + err + "</div>"
-                throw err;
+                handleError(err)
               }
             },false)
           </script>
@@ -27,7 +35,7 @@ const html = `
     </html>
   `;
 
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+const Preview: React.FC<PreviewProps> = ({ code, err }) => {
   const iframe = useRef<any>();
   useEffect(() => {
     iframe.current.srcdoc = html;
@@ -44,6 +52,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         srcDoc={html}
         sandbox="allow-scripts"
       />
+      {err && <div className="preview-err">{err}</div>}
     </div>
   );
 };
