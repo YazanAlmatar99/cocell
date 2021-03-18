@@ -1,5 +1,5 @@
-import { ActionTypes } from "../action-types";
-
+import { ActionType } from "../action-types";
+import { CellTypes } from "../cell";
 interface MoveCellAction {
   type: ActionType.MOVE_CELL;
   payload: {
