@@ -2,6 +2,7 @@
     "cSpell.ignoreWords": [
         "bulmaswatch",
         "esbuild",
+        "immer",
         "wasm"
     ]
 }
