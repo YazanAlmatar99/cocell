@@ -3,8 +3,6 @@ import { CellTypes } from "../cell";
 import { Dispatch } from "redux";
 import bundle from "../../bundler";
 import {
-  BundleStartAction,
-  BundleCompleteAction,
   Direction,
   Action,
   UpdateCellAction,
