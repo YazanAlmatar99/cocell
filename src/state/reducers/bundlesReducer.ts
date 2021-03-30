@@ -34,3 +34,5 @@ const reducer = produce(
     }
   }
 );
+
+export default reducer;
