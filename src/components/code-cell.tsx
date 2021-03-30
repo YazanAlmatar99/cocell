@@ -1,30 +1,27 @@
 import { useState, useEffect } from "react";
-import bundle from "../bundler";
 import CodeEditor from "./code-editor";
 import Preview from "./preview";
 import Resizable from "./resizable";
 import { Cell } from "../state/cell";
 import { useActions } from "../hooks/use-actions";
+import { useTypedSelector } from "../hooks/useTypedSelector";
 interface CodeCellProps {
   cell: Cell;
 }
 
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  const [code, setCode] = useState("");
-  const [err, setErr] = useState("");
-  const { updateCell } = useActions();
+  const { updateCell, createBundle } = useActions();
+  const bundle = useTypedSelector((state) => state.bundles[cell.id]);
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundle(cell.content);
       //to reset the iframe every time before execution
-      setCode(output.code);
-      setErr(output.err);
-    }, 1500);
+      createBundle(cell.id, cell.content);
+    }, 1200);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content]);
+  }, [cell.content, cell.id]);
 
   return (
     <Resizable direction="vertical">
@@ -41,7 +38,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        <Preview code={code} err={err} />
+        {bundle && <Preview code={bundle.code} err={bundle.err} />}
       </div>
     </Resizable>
   );
