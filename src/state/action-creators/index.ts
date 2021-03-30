@@ -1,4 +1,4 @@
-import { ActionType, ActionType } from "../action-types";
+import { ActionType } from "../action-types";
 import { CellTypes } from "../cell";
 import { Dispatch } from "redux";
 import bundle from "../../bundler";
