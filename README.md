@@ -1,9 +1,10 @@
-<<<<<<< HEAD
 # Cocell
 
 [cocell.io](https://www.cocell.io)
 
 > Interactive online JavaScript IDE that you can use to build and test front-end code
+
+<<<<<<< cocell-io
 
 ### Getting Started :smile:
 
@@ -27,7 +28,7 @@ npm start
 - You can import CSS libraries - Example: `import 'bulma/css/bulma.css'`
 - Delete cells, move cells up or down by using the navigation arrows on the top right.
 
-#### You can import external libraries like React simply by importing React like you would normally do on your local machine.
+#### You can import external libraries like React simply by importing React like you would normally do on your local machine
 
 ![](public/import-react.gif)
 
@@ -38,5 +39,3 @@ You can also write Markdown in the text cells!
 > It uses unpkg.com to import NPM packages and ESBuild to bundle code.
 
 ##### v1.0
-=======
->>>>>>> c2b1f2df6045ab5d5877da5e9ecdfa96353fb907
