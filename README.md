@@ -26,7 +26,7 @@ npm start
 - You can import CSS libraries - Example: `import 'bulma/css/bulma.css'`
 - Delete cells, move cells up or down by using the navigation arrows on the top right.
 
-#### You can import external libraries like React simply by importing React like you would normally do on your local machine
+#### You can import external libraries like React simply by importing React like you would normally do on your local machine.
 
 ![](public/import-react.gif)
 
