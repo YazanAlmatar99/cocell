@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cocell
 
 [cocell.io](https://www.cocell.io)
@@ -37,3 +38,5 @@ You can also write Markdown in the text cells!
 > It uses unpkg.com to import NPM packages and ESBuild to bundle code.
 
 ##### v1.0
+=======
+>>>>>>> c2b1f2df6045ab5d5877da5e9ecdfa96353fb907
