@@ -41,7 +41,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
       </button>
       <MonacoEditor
         editorDidMount={onEditorDidMount}
-        value={"//User show() to output content."}
+        value={"//Use show() to output content."}
         height="100%"
         language="javascript"
         theme="dark"
