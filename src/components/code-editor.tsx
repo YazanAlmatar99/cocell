@@ -18,7 +18,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
     });
   };
   const onFormatClick = () => {
-    console.log(editorRef.current);
     const unformatted = editorRef.current.getModel().getValue();
     const formatted = prettier
       .format(unformatted, {
@@ -42,7 +41,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
       </button>
       <MonacoEditor
         editorDidMount={onEditorDidMount}
-        value={initialValue}
+        value={"//User show() to output content."}
         height="100%"
         language="javascript"
         theme="dark"
