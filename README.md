@@ -4,8 +4,6 @@
 
 > Interactive online JavaScript IDE that you can use to build and test front-end code
 
-<<<<<<< cocell-io
-
 ### Getting Started :smile:
 
 ```
