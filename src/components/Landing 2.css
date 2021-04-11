@@ -1,0 +1,93 @@
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+/* Global */
+
+body {
+  height: calc(100vh - 8em);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Anonymous Pro", monospace;
+  /* background-color: rgb(25, 25, 25); */
+}
+.landing-wrapper {
+  margin: 0 25px 50vh;
+}
+.line-1 {
+  margin-top: 20px;
+  position: relative;
+  top: 55%;
+  width: 100%;
+  margin: 0 auto;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  font-size: 30px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-10%);
+}
+
+@media only screen and (max-width: 600px) {
+  .line-1 {
+    font-size: 14px;
+  }
+}
+
+/* Animation */
+.anim-typewriter {
+  animation: typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 24em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+.cta-button {
+  margin: auto;
+}
+
+.instructions-wrapper {
+  margin: 40px 10px;
+  padding: 10px;
+}
+
+.rotate {
+  animation: rotation 3s;
+  margin: auto;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+.linear {
+  animation-timing-function: linear;
+}
+.infinite {
+  animation-iteration-count: infinite;
+}
+.rotate-image {
+  animation: rotation 2s linear infinite;
+}
+.github {
+  margin: 80px 0;
+}
+.header {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
